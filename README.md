@@ -12,7 +12,10 @@ Most users save mapping into configmap and inject it into deployment, or they ha
 The worst-case scenario is when a single service name needs to be updated and a restart of all microservices is necessary as a result of configmap being injected into every deployment or having a hardcoded value.
 
 
-Nginx managing internal traffic
+### Nginx managing internal traffic
+
+![gcp drawio](https://user-images.githubusercontent.com/15871000/201431603-0842c600-6856-47b1-8850-1e19c7593e28.png)
+
 
 When many teams are working on the same project, integrating nginx inside Kubernetes to manage the east-west traffic would be quite beneficial and increase flexibility.
 
