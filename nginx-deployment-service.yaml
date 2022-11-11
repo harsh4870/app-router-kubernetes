@@ -17,10 +17,10 @@ spec:
         image: nginx
         ports:
         - containerPort: 8000       
-          volumeMounts:
-            - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
       volumes:
         - name: nginx-config
           configMap:
