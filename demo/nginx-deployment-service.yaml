@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-router
+spec:
+  selector:
+    matchLabels:
+      run: app-router
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: app-router
+    spec:
+      containers:
+      - name: app-router
+        image: nginx
+        ports:
+        - containerPort: 8000       
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginxconf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-router
+  labels:
+    run: app-router
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+  selector:
+    run: app-router
